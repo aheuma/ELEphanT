@@ -1,31 +1,11 @@
 import streamlit as st
-import spacy
-from spacy import Language
 #from EasyLanguageTool.SentenceLevelResults import SentenceLevelResults
 #from EasyLanguageTool.TextLevelResults import TextLevelResults
 
-nlp = spacy.load("de_core_news_sm")
+st.sidebar.image("/home/anneleheu/Documents/Masterstudium/M8/Praxisprojekt/Logo/ELEphanT_logo.png", width=300)
 
-# Modifying spacy sentence boundaries
-@Language.component("set_custom_boundaries")
-def set_custom_boundaries(doc):
-    for token in doc[:-1]:
-        if token.text == ";":
-            doc[token.i + 1].is_sent_start = False
-        elif token.text == "„":
-            doc[token.i + 1].is_sent_start = False
-        elif token.text == ":":
-            doc[token.i + 1].is_sent_start = False
-        elif token.text == "‚":
-            doc[token.i + 1].is_sent_start = False
-    return doc
 
-nlp.add_pipe("set_custom_boundaries", before="parser")
-
-# STREAMLIT
-
-st.sidebar.markdown(" ")
-st.markdown("# QuantiLS: Analyze your Text")
+st.markdown("## ELEphanT: Analyze your Text")
 
 exp1 = st.expander("1. Text Input", expanded=True)
 exp2 = st.expander("2. Pre-Processing")
