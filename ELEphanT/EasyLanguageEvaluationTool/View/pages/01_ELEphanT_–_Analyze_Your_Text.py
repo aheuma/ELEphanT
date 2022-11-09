@@ -24,7 +24,7 @@ with exp1:
     elif text and title:
         st.success("All necessary data has been pasted. You can now move on to the next step.")
 if text and title:
-    with exp2:
+    with exp2: #TODO: das hier nicht als extra Schritt machen, sondern einfach HInweis einbauen, dass der Text für die Evaluation auch preprocessed wird. Dann mit Button Klick direkt Ergebnis bringen.
         st.info("Note: This tool works best when your text has undergone some cleaning operations (pre-processing). "
             "For example: French quotation marks (»«), which are commonly used in German literature, should be replaced by German quotations („“). "
             "Using the tool without applying the pre-processing option is therefore not allowed.")

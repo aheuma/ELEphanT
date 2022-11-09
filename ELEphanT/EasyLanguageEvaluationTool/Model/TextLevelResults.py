@@ -28,14 +28,14 @@ class TextLevelResults:
         return all_text_characteristics
 
     def calculate_weighted_el_score_rel(self):
-        all_weighted_rules = [self.df["R1: High Numbers"].mean() * 1.00, self.df["R2: Percentage Numbers"].mean() * 1.00,
-                                  self.df["R3: Written out Numbers"].mean() * 0.99, self.df["R4: Special Characters"].mean() * 0.98,
-                                  self.df["R5: Repetitive Words"].mean() * 0.97, self.df["R6: Sum: Long Words and Hyphens"].mean() * 0.65,
-                                  self.df["R7: Abbreviations"].mean() * 1.00, self.df["R8: Nominalisations"].mean() * 0.88,
-                                  self.df["R9: Passive Voice"].mean() * 0.95, self.df["R10: Genitive Case"].mean() * 0.94,
-                                  self.df["R11: Subjunctive Construct"].mean() * 1.00, self.df["R12: Negative Words"].mean() * 0.92,
-                                  self.df["R13: Long Sentence"].mean() * 0.65, self.df["R14: Multiple Sentence Statements"].mean() * 0.91,
-                                  self.df["R15: Complex Sentence Structure"].mean() * 0.33, self.df["R16: Sentence Beginnings"].mean() * 0.08]
+        all_weighted_rules = [self.df["R1: High Numbers"].mean() * 1.000, self.df["R2: Percentage Numbers"].mean() * 1.000,
+                                  self.df["R3: Written out Numbers"].mean() * 0.997, self.df["R4: Special Characters"].mean() * 0.990,
+                                  self.df["R5: Repetitive Words"].mean() * 0.977, self.df["R6: Sum: Long Words and Hyphens"].mean() * 0.670,
+                                  self.df["R7: Abbreviations"].mean() * 1.000, self.df["R8: Nominalisations"].mean() * 0.896,
+                                  self.df["R9: Passive Voice"].mean() * 0.957, self.df["R10: Genitive Case"].mean() * 0.954,
+                                  self.df["R11: Subjunctive Construct"].mean() * 0.998, self.df["R12: Negative Words"].mean() * 0.937,
+                                  self.df["R13: Long Sentence"].mean() * 0.666, self.df["R14: Multiple Sentence Statements"].mean() * 0.921,
+                                  self.df["R15: Complex Sentence Structure"].mean() * 0.335, self.df["R16: Sentence Beginnings"].mean() * 0.084]
         return round(((sum(all_weighted_rules) / len(all_weighted_rules))), 3)
 
     def safe_results_in_excel_file(self, text_characteristics_results, rule_results_abs, rule_results_rel,
