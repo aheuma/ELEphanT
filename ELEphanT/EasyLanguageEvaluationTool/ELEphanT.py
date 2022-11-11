@@ -9,9 +9,9 @@ An excel file with all results on sentence level is created for each text file.
 3. A summarizing excel file is created on the basis of the sentence level excel file(s).
 '''
 
-directory_original_txt_files = Path("")
-directory_preprocessed_txt_files = Path("")
-directory_sentence_level_xlsx_results = Path("")
+directory_original_txt_files = Path("/home/anneleheu/Documents/Masterstudium/M8/Praxisprojekt/Other: Code/Textfiles/Evaluation/Wilde_Jana/")
+directory_preprocessed_txt_files = Path("/home/anneleheu/Documents/Masterstudium/M8/Praxisprojekt/Other: Code/Textfiles/Evaluation/Wilde_Jana/preprocessed/")
+directory_sentence_level_xlsx_results = Path("/home/anneleheu/Documents/Masterstudium/M8/Praxisprojekt/Other: Code/Textfiles/Evaluation/Wilde_Jana/Results/")
 resultname = "Text_Level_Results.xlsx"
 file_text_level_xlsx_results = directory_sentence_level_xlsx_results / resultname
 

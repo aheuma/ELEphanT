@@ -7,5 +7,6 @@ def read_markdown_file(markdown_file):
 st.sidebar.image("/home/anneleheu/Documents/Masterstudium/M8/Praxisprojekt/Logo/ELEphanT_logo.png", width=300)
 st.markdown("# What is Easy Language?")
 
-easy_language_markdown = read_markdown_file("/home/anneleheu/Documents/Masterstudium/M8/Praxisprojekt/ELEphant - Streamlit/ELEphanT/ELEphanT/EasyLanguageEvaluationTool/View/Markdown-Files/Easy Language.md")
+easy_language_markdown = read_markdown_file(
+    "/home/anneleheu/Documents/Masterstudium/M8/Praxisprojekt/ELEphant - Streamlit/ELEphanT/ELEphanT/EasyLanguageEvaluationTool/Streamlit/Markdown-Files/Easy Language.md")
 st.markdown(easy_language_markdown, unsafe_allow_html=True)
