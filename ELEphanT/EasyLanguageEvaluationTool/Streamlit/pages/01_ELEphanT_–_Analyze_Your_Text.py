@@ -1,6 +1,5 @@
 import streamlit as st
-from ELEphanT.EasyLanguageEvaluationTool.PreProcessing import TextPreprocessor
-
+from ELEphanT.EasyLanguageEvaluationTool.Streamlit.PreProcessing import TextPreprocessor
 
 st.sidebar.image("/home/anneleheu/Documents/Masterstudium/M8/Praxisprojekt/Logo/ELEphanT_logo.png", width=300)
 st.markdown("## ELEphanT: Analyze your Text")

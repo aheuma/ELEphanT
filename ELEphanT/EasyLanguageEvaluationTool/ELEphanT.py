@@ -1,5 +1,5 @@
-from Model.EasyLanguageEvaluator import EasyLanguageEvaluator
-from PreProcessing.TextPreprocessor import TextPreprocessor
+from ELEphanT.EasyLanguageEvaluationTool.Streamlit.Model.EasyLanguageEvaluator import EasyLanguageEvaluator
+from ELEphanT.EasyLanguageEvaluationTool.Streamlit.PreProcessing import TextPreprocessor
 from pathlib import Path
 
 ''' Note: this tool will analyze all txt.-files in the given directory
