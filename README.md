@@ -33,7 +33,7 @@ There is no standard rulebook for Easy Language. Instead, there are multiple rul
     b. [pandas](https://pandas.pydata.org/docs/getting_started/install.html) <br>
     c. [xlsxwriter](https://pypi.org/project/XlsxWriter/) <br>
     d. [openpyxl](https://pypi.org/project/openpyxl/)
-5. Download spaCy's German language model [de_core_news_sm](https://spacy.io/models/de#de_core_news_sm) with the terminal command "python3 -m spacy download de_core_news_sm"
+5. Download spaCy's German language model [de_core_news_sm](https://spacy.io/models/de#de_core_news_sm) with the terminal command "python3 -m spacy download de_core_news_sm" (depending on your downloaded python version you need to use "python" as command instead of "python3").
 6. In your terminal, locate to ...\ELEphanT\EasyLanguageEvaluationTool\ and run ELEphanT.py.
 
 **Remarks**
@@ -43,4 +43,4 @@ There is no standard rulebook for Easy Language. Instead, there are multiple rul
 ## References
 The logo has been developed on the basis of free resources from vecteezy.com. <br>
 Artist: Vecteezy <br>
-Vector graphic: [Elephan Vectors](https://www.vecteezy.com/vector-art/2485692-elephant-kids-coloring-page-great-for-beginner-coloring-book)
+Vector graphic: [Elephant Vectors](https://www.vecteezy.com/vector-art/2485692-elephant-kids-coloring-page-great-for-beginner-coloring-book)
