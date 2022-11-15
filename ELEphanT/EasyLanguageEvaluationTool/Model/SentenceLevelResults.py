@@ -1,8 +1,8 @@
 import pandas as pd
-from Model.CharacterRuleEvaluator import CharacterRuleEvaluator
-from Model.TextCharacteristicsEvaluator import TextEvaluator
-from Model.WordRuleEvaluator import WordRuleEvaluator
-from Model.SentenceRuleEvaluator import SentenceRuleEvaluator
+from CharacterRuleEvaluator import CharacterRuleEvaluator
+from TextCharacteristicsEvaluator import TextEvaluator
+from WordRuleEvaluator import WordRuleEvaluator
+from SentenceRuleEvaluator import SentenceRuleEvaluator
 
 
 class SentenceLevelResults:

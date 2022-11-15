@@ -7,8 +7,8 @@ class TextPreprocessor:
     def __init__(self):
         pass
 
-    def preprocess_texts(self, text):
-        preprocessed_text = text
+    def preprocess_texts(self, original_text):
+        preprocessed_text = original_text
 
         # Normalisation of french quotation marks because the german ones are better recognized.
         # Apostrophes are also replaced by the german character because of consistency.

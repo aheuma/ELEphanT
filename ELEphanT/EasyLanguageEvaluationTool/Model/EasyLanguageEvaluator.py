@@ -1,9 +1,9 @@
 import os
 import spacy
 from spacy import Language
-from Model.ExcelSheetCreator import ExcelSheetCreator
-from Model.SentenceLevelResults import SentenceLevelResults
-from Model.TextLevelResults import TextLevelResults
+from ExcelSheetCreator import ExcelSheetCreator
+from SentenceLevelResults import SentenceLevelResults
+from TextLevelResults import TextLevelResults
 
 
 class EasyLanguageEvaluator:

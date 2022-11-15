@@ -1,7 +1,9 @@
 import streamlit as st
-from ELEphanT.EasyLanguageEvaluationTool.Streamlit.PreProcessing import TextPreprocessor
+import sys
+sys.path.append("./PreProcessing/")
+from TextPreprocessor import TextPreprocessor
 
-st.sidebar.image("/home/anneleheu/Documents/Masterstudium/M8/Praxisprojekt/Logo/ELEphanT_logo.png", width=300)
+st.sidebar.image("./ELEphanT_logo.png", width=300)
 st.markdown("## ELEphanT: Analyze your Text")
 exp3 = st.expander("3. Sentence Level Analysis")
 exp4 = st.expander("4. Text Level Analysis")
