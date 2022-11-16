@@ -25,13 +25,13 @@ class TextEvaluator:
                     words_per_sentence += 1
                     length_of_all_words += len(token)
             try:
-                average_word_length.append(round(length_of_all_words / words_per_sentence, 3))
+                average_word_length.append(round(length_of_all_words / float(words_per_sentence), 2))
             except ZeroDivisionError:
                 average_word_length.append(0)
             sentence_length_characters.append(characters_per_sentence)
             sentence_length_words.append(words_per_sentence)
         return filenames, sentences, sentence_numbers, sentence_length_tokens, sentence_length_words, average_word_length, sentence_length_characters
 
-    def evaluate(self, doc, filename):
-        filenames, sentences, sentence_numbers, sentence_length_tokens, sentence_length_words, average_word_length, sentence_length_characters = self.evaluate_text_characteristics(doc, filename)
-        return filenames, sentences, sentence_numbers, sentence_length_tokens, sentence_length_words, average_word_length, sentence_length_characters
+    def evaluate(self, doc, title):
+        titles, sentences, sentence_numbers, sentence_length_tokens, sentence_length_words, average_word_length, sentence_length_characters = self.evaluate_text_characteristics(doc, title)
+        return titles, sentences, sentence_numbers, sentence_length_tokens, sentence_length_words, average_word_length, sentence_length_characters

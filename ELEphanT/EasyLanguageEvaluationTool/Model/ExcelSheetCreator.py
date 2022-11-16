@@ -16,9 +16,7 @@ class ExcelSheetCreator:
                      "R7: Abbreviations", "R8: Nominalisations", "R9: Passive Voice", "R10: Genitive Case",
                      "R11: Subjunctive Construct", "R12: Negative Words", "R13: Long Sentence",
                      "R14: Multiple Sentence Statements", "R15: Complex Sentence Structure", "R16: Sentence Beginnings"], index=[1])
-        writer = pd.ExcelWriter(path_to_sentence_level_results, engine="xlsxwriter")
-        df_sentence_level_results.to_excel(writer, sheet_name="Results", index=False)
-        writer.close()
+        return df_sentence_level_results
 
     # Creates the final excel file (no rows, only columns)
     def create_text_level_results(self, path_to_text_level_results):
@@ -40,6 +38,4 @@ class ExcelSheetCreator:
                      "R13: Sentence Length (in %)", "R14: Sentence Statements (abs.)", "R14: Sentence Statements (in %)",
                      "R15: Complex Sentence Structure (abs.)", "R15: Complex Sentence Structure (in %)",
                      "R16: Sentence Beginnings (abs.)", "R16: Sentence Beginnings (in %)"], index=[1])
-        writer = pd.ExcelWriter(path_to_text_level_results, engine="xlsxwriter")
-        df_text_level_results.to_excel(writer, sheet_name="Results", index=False)
-        writer.close()
+        return df_text_level_results
