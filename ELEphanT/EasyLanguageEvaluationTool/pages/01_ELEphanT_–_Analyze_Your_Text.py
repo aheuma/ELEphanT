@@ -8,39 +8,66 @@ from TextPreprocessor import TextPreprocessor
 from EasyLanguageEvaluator import EasyLanguageEvaluator
 import pandas as pd
 
-st.sidebar.image("./ELEphanT_logo.png", width=300)
+st.set_page_config(layout="wide")
+sidebar = st.sidebar
+with sidebar:
+    st.markdown("## Additional information")
+    exp1 = st.sidebar.expander("Input & Specification")
+    exp2 = st.sidebar.expander("Output – Results")
+    with exp1:
+        st.markdown("- **Preprocessing**: includes i.e. the substitution of french quotation marks (»«), "
+                "which are commonly used in German literature, by German quotations („“).")
+        st.markdown("- **Choseable evaluation modes**: \n 1. Easy Language rules only (default) \n 2. Easy "
+                    "Language rules and additional text characteristics (i.e. number of tokens or words per sentence).")
+        st.sidebar.image("./ELEphanT_logo.png", width=300)
+    with exp2:
+        st.markdown("- **Two kinds of results**: \n 1. Sentence level results, including the rule evaluations for every sentence."
+                    "\n 2. Text level results, containing a summary of 1. \n This output is always created und thus independent from the chosen evaluation mode.")
+
 st.markdown("## ELEphanT: Analyze your Text")
-st.markdown("##### Insert title")
-st.markdown("*Press enter to submit*")
-title = st.text_input(label="title", label_visibility="collapsed")
-if title:
+if "is_expanded" not in st.session_state:
+    st.session_state["is_expanded"] = True
+exp3 = st.expander("Text input & evaluation mode specification", expanded=st.session_state["is_expanded"])
+preprocessed_text = ""
+collapse_marker = ""
+with exp3:
+    st.markdown("##### Insert title")
+    title = st.text_input(label="title", label_visibility="collapsed")
+    st.markdown("*Press enter to submit*")
     st.markdown("##### Insert text")
-    #TODO: maximum text length
-    st.info("Note: In submitting your text (pressing ctrl + enter) you agree that your text is preprocessed by ELEphanT. "
-            "Preprocessing includes i.e. the substitution of french quotation marks (»«), which are commonly used in German literature, by German quotations („“).")
+    # TODO: maximum text length
     st.markdown("*Press ctrl + enter to submit*")
     text = st.text_area(label="Insert your text", label_visibility="collapsed", height=350)
-    if text and title:
-        text_preprocessor = TextPreprocessor()
-        preprocessed_text = text_preprocessor.preprocess_texts(text)
-        success = st.success("Evaluation successfully completed!")
-        if success:
-            cb1 = st.checkbox("Display preprocessed text")
-            if cb1:
-                st.markdown(preprocessed_text)
-            container1 = st.container()
-            with container1:
-                col1, col2, col3, col4 = st.columns([1,2,2,1])
-                with col2:
-                    btn2 = st.button("Sentence level results")
-                with col3:
-                    btn3 = st.button("Text level results")
-                easy_language_evaluator = EasyLanguageEvaluator()
-            if btn2:
-                df_sentence_level_results = pd.DataFrame()
-                df_sentence_level_results = easy_language_evaluator.create_easy_language_results(preprocessed_text, title)
-                df_sentence_level_results["Sentence"] = df_sentence_level_results["Sentence"].astype("str")
-                df_sentence_level_results["Number of Satisfied Rules abs."] = df_sentence_level_results["Number of Satisfied Rules abs."].astype(int)
-                df_sentence_level_results["Average Word Length (in Characters)"] = df_sentence_level_results["Average Word Length (in Characters)"].astype(float)
-                #Zum Rounding-problem: "round" scheint schon zu funktionieren, allerdings müssten die hintersten 0 abgeschnitten werden ...
-                st.dataframe(df_sentence_level_results)
+    text_preprocessor = TextPreprocessor()
+    preprocessed_text = text_preprocessor.preprocess_texts(text)
+    st.markdown("##### Chose evaluation mode")
+    evaluation_mode = st.radio("Pick one", ("Easy Language rules only", "Easy Language rules and text characteristics"),
+                                           label_visibility="collapsed")
+    if "button" not in st.session_state:
+        st.session_state.button = False
+    btn1 = st.button("Run ELEphanT")
+if btn1:
+    if not text or not title:
+        st.error("You need to insert your data first!")
+    elif text and title:
+        #st.session_state["is_expanded"] = False
+        #TODO: enable expander collapsing here?
+        st.markdown("##### Output – Results")
+        output = st.selectbox("Pick one", ("Preprocessed Text", "Sentence Level Results", "Text Level Results"),
+                              label_visibility="collapsed")
+        if output == "Preprocessed Text":
+            st.markdown(preprocessed_text)
+        elif output == "Sentence Level Results":
+            # TODO: wenn ich hier klicke, verschwindet alles, was nach dem expander kommt, wieder. Wahrscheinlich muss ich den buttonWert irgendwie mit session state speichern.
+            easy_language_evaluator = EasyLanguageEvaluator()
+            df_sentence_level_results = pd.DataFrame()
+            df_sentence_level_results = easy_language_evaluator.create_easy_language_results(preprocessed_text, title)
+            df_sentence_level_results["Sentence"] = df_sentence_level_results["Sentence"].astype("str")
+            df_sentence_level_results["Number of Satisfied Rules abs."] = df_sentence_level_results[
+                "Number of Satisfied Rules abs."].astype(int)
+            df_sentence_level_results["Average Word Length (in Characters)"] = df_sentence_level_results[
+                "Average Word Length (in Characters)"].astype(float)
+            # Zum Rounding-problem: "round" scheint schon zu funktionieren, allerdings müssten die hintersten 0 abgeschnitten werden ...
+            st.dataframe(df_sentence_level_results)
+        elif output == "Text Level Results":
+            pass
