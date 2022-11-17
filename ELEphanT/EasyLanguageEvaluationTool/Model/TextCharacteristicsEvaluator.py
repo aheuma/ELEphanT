@@ -1,7 +1,13 @@
+from decimal import Decimal
+
+
 class TextEvaluator:
 
     def __init__(self):
         pass
+
+    def remove_exponent(self, d):
+        return d.quantize(Decimal(1)) if d == d.to_integral() else d.normalize()
 
     def evaluate_text_characteristics(self, doc, filename):
         filenames = []
@@ -25,7 +31,9 @@ class TextEvaluator:
                     words_per_sentence += 1
                     length_of_all_words += len(token)
             try:
-                average_word_length.append(round(length_of_all_words / float(words_per_sentence), 2))
+                avg_word_length = round(length_of_all_words / words_per_sentence, 2)
+                #avg_word_length = str(avg_word_length) This works but only by losing precision
+                average_word_length.append(avg_word_length)
             except ZeroDivisionError:
                 average_word_length.append(0)
             sentence_length_characters.append(characters_per_sentence)
