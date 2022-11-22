@@ -32,7 +32,7 @@ class EasyLanguageEvaluator:
         results_on_sentence_level_creator = SentenceLevelResults()
         df_sentence_level_results = results_on_sentence_level_creator.analyse_text_on_sentence_level(doc, title, self.nlp)
 
-        return df_sentence_level_results
         # create results on text level
-        # results_on_text_level_creator = TextLevelResults()
-        # results_on_text_level_creator.analyse_text_on_text_level()
+        results_on_text_level_creator = TextLevelResults(df_sentence_level_results)
+        df_text_level_results = results_on_text_level_creator.analyse_text_on_text_level()
+        return df_sentence_level_results, df_text_level_results

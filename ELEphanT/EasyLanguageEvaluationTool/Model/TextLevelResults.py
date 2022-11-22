@@ -3,8 +3,8 @@ import pandas as pd
 
 class TextLevelResults:
 
-    def __init__(self, input_excel_file):
-        self.df = pd.read_excel(input_excel_file)
+    def __init__(self, df_sentence_level):
+        self.df = df_sentence_level
         self.only_rules_df = self.df.iloc[:, [9, 10, 11, 12, 13, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]]
 
     def sum_sentence_level_results(self):
@@ -18,13 +18,13 @@ class TextLevelResults:
         return sents_without_broken_rule_abs, sents_without_broken_rule_rel
 
     def sum_text_characteristics(self):
-        filename = self.df["Filename"][0]
+        title = self.df["Title"][0]
         number_of_sentences = len(self.df)
         average_sentence_length = round(self.df["Words per Sentence"].mean(), 3)
         number_of_tokens = self.df["Tokens per Sentence"].sum()
         number_of_words = self.df["Words per Sentence"].sum()
         number_of_characters = self.df["Characters per Sentence"].sum()
-        all_text_characteristics = [filename, number_of_sentences, number_of_tokens, number_of_words, average_sentence_length, number_of_characters]
+        all_text_characteristics = [title, number_of_sentences, number_of_tokens, number_of_words, average_sentence_length, number_of_characters]
         return all_text_characteristics
 
     def calculate_weighted_el_score_rel(self):
@@ -38,9 +38,24 @@ class TextLevelResults:
                                   self.df["R15: Complex Sentence Structure"].mean() * 0.335, self.df["R16: Sentence Beginnings"].mean() * 0.084]
         return round(((sum(all_weighted_rules) / len(all_weighted_rules))), 3)
 
-    def safe_results_in_excel_file(self, text_characteristics_results, rule_results_abs, rule_results_rel,
-                                   path_to_text_level_results, counter):
-        df = pd.read_excel(path_to_text_level_results)
+    def create_text_level_df(self, text_characteristics_results, rule_results_abs, rule_results_rel):
+        df_text_level_results = pd.DataFrame(columns=["Title", "Number of Sentences per Text", "Number of Tokens per Text", "Number of Words per Text",
+                     "Average Sentence Length (in Words)", "Number of Characters per Text",
+                     "Average Number of Satisfied Rules abs. (unweighted)",
+                     "Unweighted Easy Language Score (in %) \n (Average Amount of Satisfied Rules (in %))",
+                     "Weighted Easy Language Score (in %)", "Number of Perfect Sentences per Text abs.",
+                     "Amount of Perfect Sentences per Text (in %)", "R1: High Numbers (abs.)", "R1: High Numbers (in %)",
+                     "R2: Percentage Numbers (abs.)", "R2: Percentage Numbers (in %)", "R3: Written out Numbers (abs.)",
+                     "R3: Written out Numbers (in %)", "R4: Special Characters (abs.)", "R4: Special Characters (in %)",
+                     "R5: Repetitive Words (abs.)", "R5: Repetitive Words (in %)", "R6: Long Words and Hyphens (abs.)",
+                     "R6: Long Words and Hyphens (in %)", "R7: Abbreviations (abs.)", "R7: Abbreviations (in %)",
+                     "R8: Nominalisations (abs.)", "R8: Nominalisations (in %)", "R9: Passive Voice (abs.)",
+                     "R9: Passive Voice (in %)", "R10: Genitive Case (abs.)", "R10: Genitive Case (in %)",
+                     "R11: Subjunctive Construct (abs.)", "R11: Subjunctive Construct (in %)",
+                     "R12: Negative Words (abs.)", "R12: Negative Words (in %)", "R13: Sentence Length (abs.)",
+                     "R13: Sentence Length (in %)", "R14: Sentence Statements (abs.)", "R14: Sentence Statements (in %)",
+                     "R15: Complex Sentence Structure (abs.)", "R15: Complex Sentence Structure (in %)",
+                     "R16: Sentence Beginnings (abs.)", "R16: Sentence Beginnings (in %)"], index=[1])
         tmp_df2 = self.df.iloc[:, 7]
         average_satisfied_rules_abs = round(tmp_df2.mean(), 3)
         average_satisfied_rules_rel = round((average_satisfied_rules_abs / len(self.only_rules_df.columns)), 3)
@@ -58,13 +73,11 @@ class TextLevelResults:
                         rule_results_abs[11], rule_results_rel[11], rule_results_abs[12], rule_results_rel[12],
                         rule_results_abs[13], rule_results_rel[13], rule_results_abs[14], rule_results_rel[14], rule_results_abs[15],
                         rule_results_rel[15]]
-        df.loc[counter] = new_data_row
-        writer = pd.ExcelWriter(path_to_text_level_results, engine="xlsxwriter")
-        df.to_excel(writer, sheet_name="Results", index=False)
-        writer.close()
+        df_text_level_results.loc[0] = new_data_row
+        return df_text_level_results
 
-    def analyse_text_on_text_level(self, path_to_text_level_results, counter):
+    def analyse_text_on_text_level(self):
         text_characteristics_results = self.sum_text_characteristics()
         rule_results_abs, rule_results_rel = self.sum_sentence_level_results()
-        self.safe_results_in_excel_file(text_characteristics_results, rule_results_abs, rule_results_rel,
-                                        path_to_text_level_results, counter)
+        df_text_level_results = self.create_text_level_df(text_characteristics_results, rule_results_abs, rule_results_rel)
+        return df_text_level_results

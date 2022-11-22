@@ -9,6 +9,14 @@ from EasyLanguageEvaluator import EasyLanguageEvaluator
 import pandas as pd
 
 st.set_page_config(layout="wide")
+title_alignment = """
+<style>
+#the-title {
+text-align: center
+}
+</style>
+"""
+
 sidebar = st.sidebar
 with sidebar:
     st.markdown("## Additional information")
@@ -43,27 +51,44 @@ with exp3:
     evaluation_mode = st.radio("Pick one", ("Easy Language rules only", "Easy Language rules and text characteristics"),
                                            label_visibility="collapsed")
     #TODO: differentiate evaluation mode
+
+    #TODO: chose easy language score
 if not text or not title:
     st.error("Insert your data!")
 elif text and title:
     #st.session_state["is_expanded"] = False
     #TODO: enable expander collapsing here?
     st.markdown("##### Output – Results")
+
+    easy_language_evaluator = EasyLanguageEvaluator()
+    df_sentence_level_results = pd.DataFrame()
+    df_text_level_results = pd.DataFrame()
+    df_sentence_level_results, df_text_level_results = easy_language_evaluator.create_easy_language_results(
+        preprocessed_text, title)
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.markdown("Unweighted Easy Language score")
+        st.markdown(f"### {df_text_level_results.iat[1, 7]}")
+    with col2:
+        st.markdown("Weighted Easy Language score")
+        st.markdown(f"### {df_text_level_results.iat[1, 8]}")
+    with col3:
+        st.markdown("Amount of perfect sentences")
+        st.markdown(f"### {df_text_level_results.iat[1, 10]}")
+
     exp4 = st.expander("Preprocessed text")
     exp5 = st.expander("Sentence level results")
     exp6 = st.expander("Text level results", expanded=True)
     with exp4:
         st.markdown(preprocessed_text)
     with exp5:
-        easy_language_evaluator = EasyLanguageEvaluator()
-        df_sentence_level_results = pd.DataFrame()
-        df_sentence_level_results = easy_language_evaluator.create_easy_language_results(preprocessed_text, title)
         df_sentence_level_results["Sentence"] = df_sentence_level_results["Sentence"].astype("str")
         df_sentence_level_results["Number of Satisfied Rules abs."] = df_sentence_level_results[
-               "Number of Satisfied Rules abs."].astype(int)
+            "Number of Satisfied Rules abs."].astype(int)
         df_sentence_level_results["Average Word Length (in Characters)"] = df_sentence_level_results[
-                "Average Word Length (in Characters)"].astype(float)
+            "Average Word Length (in Characters)"].astype(float)
         # Zum Rounding-problem: "round" scheint schon zu funktionieren, allerdings müssten die hintersten 0 abgeschnitten werden ...
         st.dataframe(df_sentence_level_results)
     with exp6:
-        st.markdown("write")
+        st.dataframe(df_text_level_results)
+        #TODO: delete row with only <NA>

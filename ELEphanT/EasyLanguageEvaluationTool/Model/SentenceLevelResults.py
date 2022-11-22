@@ -44,7 +44,7 @@ class SentenceLevelResults:
 
     def create_sentence_level_df(self, text_characteristics, easy_language_rules):
         df_sentence_level_results = pd.DataFrame(
-            columns=["Filename", "Sentence", "Sentence Number", "Tokens per Sentence", "Words per Sentence",
+            columns=["Title", "Sentence", "Sentence Number", "Tokens per Sentence", "Words per Sentence",
                      "Average Word Length (in Characters)",
                      "Characters per Sentence", "R1: High Numbers", "R2: Percentage Numbers", "R3: Written out Numbers",
                      "R4: Special Characters", "R5: Repetitive Words", "R6: Long Words",
