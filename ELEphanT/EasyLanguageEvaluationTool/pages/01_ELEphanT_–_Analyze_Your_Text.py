@@ -23,12 +23,12 @@ with sidebar:
                     "\n 3. Amount of perfect sentences: Percentage of sentences that fulfill at least 15 (of 16) rules (in %)")
         st.sidebar.image("./ELEphanT_logo.png", width=300)
     with exp2:
-        st.markdown("- **Two kinds of results**: \n 1. Sentence level results, including the rule evaluations for every sentence."
-                    "\n 2. Text level results, containing a summary of 1. \n This output is always created und thus independent from the chosen evaluation mode.")
-
-if "is_expanded" not in st.session_state:
-    st.session_state["is_expanded"] = True
-
+        st.markdown("- **Three parts**: \n 1. Easy Language Score: results depending on the chosen Easy Language score."
+                    "\n 2. Rule Compliance: Overview over the most broken rules."
+                    "\n 3. ELEphanT Output: display preprocessed text and two-fold results: \n "
+                    "- A. Sentence level results, including the rule evaluations for every sentence. \n"
+                    "\n - B. Text level results, containing a summary of 1. \n This output is always created und thus independent from the chosen evaluation mode.")
+#TODO: hier weiter: den teil mit "this output is always created..." anpassen.
 st.markdown("## ELEphanT: Analyze your Text")
 exp3 = st.expander("Text input & evaluation mode specification", expanded=st.session_state["is_expanded"])
 preprocessed_text = ""
@@ -39,14 +39,14 @@ with exp3:
     title = st.text_input(label="title", label_visibility="collapsed")
     st.markdown("*Press enter to submit*")
     st.markdown("##### Insert text")
-    # TODO: maximum text length
+    st.info("Recommended maximum text length: < 1.000.000 characters")
     st.markdown("*Press ctrl + enter to submit*")
     text = st.text_area(label="Insert your text", label_visibility="collapsed", height=350)
     text_preprocessor = TextPreprocessor()
     preprocessed_text = text_preprocessor.preprocess_texts(text)
     st.markdown("##### Chose Easy Language score")
-    chosen_easy_language_score = st.radio("Pick one", ("Unweighted", "Weighted", "Amount of perfect sentences"),
-                               label_visibility="collapsed")
+    chosen_easy_language_score = st.radio("Pick one option", ("Unweighted", "Weighted", "Amount of perfect sentences"),
+                               help="Additional information on the scores can be found in the sidebar")
 
 # Print error if necessary data is missing
 if not text or not title:
@@ -54,9 +54,9 @@ if not text or not title:
 
 # Precede with analysis only if all necessary data available
 elif text and title:
-    #st.session_state["is_expanded"] = False
-    #TODO: enable expander collapsing here?
     st.markdown("## Output – Results")
+    st.markdown("---")
+    st.title("Easy Language Score")
 
     easy_language_evaluator = EasyLanguageEvaluator()
     df_sentence_level_results = pd.DataFrame()
@@ -104,48 +104,59 @@ elif text and title:
     # Zum Rounding-problem: "round" scheint schon zu funktionieren, allerdings müssten die hintersten 0 abgeschnitten werden ...
     df_sentence_level_results = df_sentence_level_results.sort_index()
 
-    col1, col2 = st. columns(2)
-    with col1:
+    # Display Easy Language score results (differentiated)
+    unweighted_score = float(df_text_level_results.iat[0, 7])
+    weighted_score = float(df_text_level_results.iat[0, 8])
+    perfect_sentences_score = df_text_level_results.iat[0, 10]
+    perfect_sentences_abs = df_text_level_results.iat[0, 9]
+    number_of_sents = df_text_level_results.iat[0, 1]
+    if chosen_easy_language_score == "Unweighted":
+        if unweighted_score >= 0.5:
+            st.markdown(f"# 🎉 {unweighted_score} 🎉")
+        else:
+            st.markdown(f"# {unweighted_score}")
+        st.markdown(f"### Your text complies with the rules of Easy Language to {'{:.1%}'.format(unweighted_score)}.")
+    elif chosen_easy_language_score == "Weighted":
+        if weighted_score >= 0.5:
+            st.markdown(f"# 🎉 {weighted_score} 🎉")
+        else:
+            st.markdown(f"# {weighted_score}")
+        st.markdown(
+            f"### Your text complies with the rules of Easy Language to {'{:.1%}'.format(weighted_score)}.")
+    elif chosen_easy_language_score == "Amount of perfect sentences":
+        if perfect_sentences_score > 0.02:
+            st.markdown(f"# 🎉 {perfect_sentences_score} 🎉")
+        else:
+            st.markdown(f"# {perfect_sentences_score}")
+        st.markdown(
+            f"### {perfect_sentences_abs} of {number_of_sents} sentences in the text comply to at least 15 rules.")
+        st.markdown(
+            f"### This corresponds to {'{:.1%}'.format(perfect_sentences_score)}.")
+    # TODO: Referenzwerte anzeigen, für jeden Score Expander mit referenz
+
+    st.markdown("---")
+    st.title("Rule Compliance")
+    tab1, tab2 = st.tabs(["Tabular Rule Scores", "Graph Visualization"])
+    with tab1:
         st.dataframe(df_rel_text_level_results)
-        # Different Easy Language score outcome
-        if chosen_easy_language_score == "Unweighted":
-            unweighted_score = float(df_text_level_results.iat[0, 7])
-            st.markdown(f"**Unweighted Easy Language score: {unweighted_score}**")
-        elif chosen_easy_language_score == "Weighted":
-            weighted_score = float(df_text_level_results.iat[0, 8])
-            st.markdown(f"### Weighted Easy Language score: {weighted_score}")
-        elif chosen_easy_language_score == "Amount of perfect sentences":
-            perfect_sentences_score = df_text_level_results.iat[0, 10]
-            st.markdown(f"### Unweighted Easy Language score: {perfect_sentences_score}")
+    with tab2:
+        # Create result plot
+        plt.style.use("ggplot")
+        x_pos = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+        plt.bar(x_pos, scores, color="steelblue")
+        plt.title("Rule Compliance in %")
+        plt.xticks(x_pos, rules)
+        plt.setp(plt.gca().get_xticklabels(), rotation=45, horizontalalignment="right")
+        st.pyplot(plt)
 
-    with col2:
-        # Different Easy Language score outcome
-        if chosen_easy_language_score == "Unweighted":
-            st.markdown(
-                f"#### Your text complies with the rules of Easy Language to {'{:.1%}'.format(unweighted_score)}")
-        elif chosen_easy_language_score == "Weighted":
-            st.markdown(
-                f"### Your text complies with the rules of Easy Language to {'{:.1%}'.format(weighted_score)}")
-        elif chosen_easy_language_score == "Amount of perfect sentences":
-            st.markdown(
-                f"### {'{:.1%}'.format(perfect_sentences_score)} of the text's sentences comply at least to 15 rules")
-        #TODO: Easy Language compliance score mehr hervorheben
-    # Create result plot
-    plt.style.use("ggplot")
-    x_pos = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
-    plt.bar(x_pos, scores, color="steelblue")
-    plt.title("Rule Compliance in %")
-    plt.xticks(x_pos, rules)
-    plt.setp(plt.gca().get_xticklabels(), rotation=45, horizontalalignment="right")
-    st.pyplot(plt)
-
-
+    st.markdown("---")
+    st.title("ELEphanT Output")
     exp4 = st.expander("Preprocessed text")
     exp5 = st.expander("Sentence level results")
     exp6 = st.expander("Text level results", expanded=True)
     with exp4:
         st.markdown(preprocessed_text)
     with exp5:
-       st.dataframe(df_sentence_level_results)
+        st.dataframe(df_sentence_level_results)
     with exp6:
-        st.dataframe(df_text_level_results)
+        st.dataframe(df_text_level_results_transposed, width=120)
