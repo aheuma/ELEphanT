@@ -38,7 +38,6 @@ preprocessed_text = ""
 
 # Form-like container to accept data from user
 with expander_user_input:
-    #TODO: Easy Language score-Wahl nach unten verschieben (oben wäre dann nur text input)?
     st.markdown("##### Chose Easy Language score")
     chosen_easy_language_score = st.radio("Pick one option", ("Unweighted", "Weighted", "Amount of perfect sentences"),
                                           help="Additional information on the scores can be found in the sidebar")
@@ -102,7 +101,6 @@ elif text and title:
             "Number of Satisfied Rules abs."].astype(int)
         dataframe_sentence_level_results["Average Word Length (in Characters)"] = dataframe_sentence_level_results[
             "Average Word Length (in Characters)"].astype(float)
-        # Zum Rounding-problem: "round" scheint schon zu funktionieren, allerdings müssten die hintersten 0 abgeschnitten werden ...
         dataframe_sentence_level_results = dataframe_sentence_level_results.sort_index()
 
         # Display Easy Language score results
@@ -135,8 +133,11 @@ elif text and title:
                     st.markdown(f"# 🎉 {perfect_sentences_score} 🎉")
                 else:
                     st.markdown(f"# {perfect_sentences_score}")
-                st.markdown(
-                    f"### {perfect_sentences_abs} of {number_of_sentences} sentences in the text comply to at least 15 rules.")
+                if perfect_sentences_abs == 1:
+                    st.markdown(
+                        f"### {perfect_sentences_abs} of {number_of_sentences} sentences in the text complies to at least 15 rules.")
+                else:
+                    st.markdown(f"### {perfect_sentences_abs} of {number_of_sentences} sentences in the text comply to at least 15 rules.")
                 st.markdown(
                     f"### This corresponds to {'{:.1%}'.format(perfect_sentences_score)}.")
 
