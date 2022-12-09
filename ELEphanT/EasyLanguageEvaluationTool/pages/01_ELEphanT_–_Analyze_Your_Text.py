@@ -52,8 +52,12 @@ with expander_user_input:
     preprocessed_text = text_preprocessor.preprocess_texts(text)
 
 # Print error if necessary data is missing
-if not text or not title:
-    st.error("Insert your data!")
+if not text and not title:
+    st.error("Text and title are missing!")
+elif not text:
+    st.error("Text is missing!")
+elif not title:
+    st.error("Title is missing!")
 
 # Precede with analysis only if all necessary data available
 elif text and title:
@@ -141,6 +145,7 @@ elif text and title:
                 st.markdown(
                     f"### This corresponds to {'{:.1%}'.format(perfect_sentences_score)}.")
 
+            #TODO: only show the chosen EL score here?
             # Display Easy Language reference scores in an expander
             expander_reference_scores = st.expander("Reference Scores", expanded=True)
             with expander_reference_scores:
