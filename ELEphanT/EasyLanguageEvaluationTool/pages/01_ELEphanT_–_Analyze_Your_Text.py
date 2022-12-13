@@ -145,16 +145,27 @@ elif text and title:
                 st.markdown(
                     f"### This corresponds to {'{:.1%}'.format(perfect_sentences_score)}.")
 
-            #TODO: only show the chosen EL score here?
             # Display Easy Language reference scores in an expander
             expander_reference_scores = st.expander("Reference Scores", expanded=True)
             with expander_reference_scores:
                 tab_easy_language_reference_texts, tab_standard_german_reference_texts = st.tabs(["Easy Language Texts", "Standard German Texts"])
                 with tab_easy_language_reference_texts:
                     dataframe_reference_easy_language = pd.read_excel("./Easy_Language_Reference_Texts.xlsx")
+                    if chosen_easy_language_score == "Unweighted":
+                        dataframe_reference_easy_language = dataframe_reference_easy_language.drop(columns=["Weighted Score", "Amount of Perfect Sentences"])
+                    elif chosen_easy_language_score == "Weighted":
+                        dataframe_reference_easy_language = dataframe_reference_easy_language.drop(columns=["Unweighted Score", "Amount of Perfect Sentences"])
+                    elif chosen_easy_language_score == "Amount of perfect sentences":
+                        dataframe_reference_easy_language = dataframe_reference_easy_language.drop(columns=["Unweighted Score", "Weighted Score"])
                     st.dataframe(dataframe_reference_easy_language)
                 with tab_standard_german_reference_texts:
                     dataframe_reference_standard_german = pd.read_excel("./Standard_German_Reference_Texts.xlsx")
+                    if chosen_easy_language_score == "Unweighted":
+                        dataframe_reference_standard_german = dataframe_reference_standard_german.drop(columns=["Weighted Score", "Amount of Perfect Sentences"])
+                    elif chosen_easy_language_score == "Weighted":
+                        dataframe_reference_standard_german = dataframe_reference_standard_german.drop(columns=["Unweighted Score", "Amount of Perfect Sentences"])
+                    elif chosen_easy_language_score == "Amount of perfect sentences":
+                        dataframe_reference_standard_german = dataframe_reference_standard_german.drop(columns=["Unweighted Score", "Weighted Score"])
                     st.dataframe(dataframe_reference_standard_german)
                 st.write("*For more information on the reference texts' sources, cf. with [Information on Research Project](http://localhost:8501/Information_on_Research_Project).*")
 
@@ -163,15 +174,24 @@ elif text and title:
             tab_tabular_rule_scores, tab_graph_visualization = st.tabs(["Tabular Rule Scores", "Graph Visualization"])
             with tab_tabular_rule_scores:
                 st.dataframe(dataframe_relative_text_level_results)
+                csv = dataframe_relative_text_level_results.to_csv().encode("utf-8")
+                st.download_button(label="Download (csv)", data=csv, file_name="sentence_level_results.csv")
             with tab_graph_visualization:
-                # Create result plot
-                plt.style.use("ggplot")
-                x_pos = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
-                plt.bar(x_pos, scores, color="steelblue")
-                plt.title("Rule Compliance in %")
-                plt.xticks(x_pos, rules)
-                plt.setp(plt.gca().get_xticklabels(), rotation=45, horizontalalignment="right")
-                st.pyplot(plt)
+                col1, col2, col3 = st.columns([4, 1, 1])
+                with col1:
+                    # Create result plot
+                    plt.style.use("ggplot")
+                    x_pos = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+                    plt.bar(x_pos, scores, color="steelblue")
+                    plt.title("Rule Compliance in %")
+                    plt.xticks(x_pos, rules)
+                    plt.setp(plt.gca().get_xticklabels(), rotation=45, horizontalalignment="right")
+                    st.pyplot(plt)
+                    plt.tight_layout()
+                    plt.savefig("Rule_Compliance.png")
+                    with open("Rule_Compliance.png", "rb") as file:
+                        st.download_button(label="Download", data=file, file_name="Rule_Compliance.png")
+
         with tab_elephant_output:
             # Further ELEphanT results (preprocessed text and excel sheets)
             expander_preprocessed_text = st.expander("Preprocessed text", expanded=True)
@@ -179,7 +199,12 @@ elif text and title:
             expander_text_level_results = st.expander("Text level results")
             with expander_preprocessed_text:
                 st.markdown(preprocessed_text)
+                st.download_button(label="Download (txt)", data=preprocessed_text, file_name="preprocessed_text.txt")
             with expander_sentence_level_results:
                 st.dataframe(dataframe_sentence_level_results)
+                csv = dataframe_sentence_level_results.to_csv().encode("utf-8")
+                st.download_button(label="Download (csv)", data=csv, file_name="sentence_level_results.csv")
             with expander_text_level_results:
                 st.dataframe(dataframe_text_level_results_transposed, width=120)
+                csv = dataframe_text_level_results_transposed.to_csv().encode("utf-8")
+                st.download_button(label="Download (csv)", data=csv, file_name="sentence_level_results.csv")

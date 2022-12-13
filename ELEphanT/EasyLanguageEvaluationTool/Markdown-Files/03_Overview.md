@@ -1,6 +1,7 @@
 - **CHYLSA project**:
   - **Full title**: CHYLSA: Children's and Youth Literature Sentiment Analysis. Advanced sentiment analysis for understanding affective-aesthetic responses to literary texts: A computational and experimental psychology approach to children’s literature.
   - **Project description**: Emotional involvement is of pivotal importance when children learn to read, tell, and share stories. This crucial dimension of cultural literacy has received surprisingly little attention within literary studies, psychology, and digital humanities. Taking a large-scale and data-driven approach, we develop and validate in CHYLSA AI-based sentiment analysis for computational literary studies. Our test case are children´s books.
+  - **Website**: [CHYLSA](https://dfg-spp-cls.github.io/projects_en/2020/01/24/TP-CHYLSA/) in the context of DFG funded SPP Computational Literary Studies
 - **Student project**:
   - **Background**: Usually, Children's books are written in easier language than books for adults. At the same time, Easy Language is important for all people with poor reading skills and thus easier than standard German texts. Both simplified text versions should not be equated but may show some interesting intersections at the same time. This overlap is subject of the current research project.
   - **Goal**: Develop a tool that measures the degree of Easy Language in children's books and compare two different age groups.
