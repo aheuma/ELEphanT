@@ -1,11 +1,13 @@
 import streamlit as st
 from pathlib import Path
+from PIL import Image
 
 def read_markdown_file(markdown_file):
     return Path(markdown_file).read_text()
 
 st.set_page_config(layout="wide")
-st.sidebar.image("./ELEphanT_logo.png", width=300)
+elephant_logo = Image.open("./ELEphanT_logo.png")
+st.sidebar.image(elephant_logo, width=300)
 st.markdown("## Evaluating Easy Language in Children's Books")
 exp0 = st.expander("Overview", expanded=True)
 exp1 = st.expander("I. Introduction")

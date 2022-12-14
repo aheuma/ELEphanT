@@ -6,6 +6,7 @@ from TextPreprocessor import TextPreprocessor
 from EasyLanguageEvaluator import EasyLanguageEvaluator
 import pandas as pd
 import matplotlib.pyplot as plt
+from PIL import Image
 
 st.set_page_config(layout="wide")
 
@@ -21,7 +22,8 @@ with sidebar:
         st.markdown("- **Choseable Easy Language scores**: \n 1. Unweighted (default): Average number of fulfilled rules per text (in %)"
                     "\n 2. Weighted: Unweighted score is multiplied with average rule compliance scores from an Easy Language reference corpus (in %)"
                     "\n 3. Amount of perfect sentences: Percentage of sentences that fulfill at least 15 (of 16) rules (in %)")
-        st.sidebar.image("./ELEphanT_logo.png", width=300)
+        elephant_logo = Image.open("./ELEphanT_logo.png")
+        st.sidebar.image(elephant_logo, width=300)
     with expander_sidebar_2:
         st.markdown("**Three parts**: \n 1. Easy Language Score: Results depending on the chosen Easy Language score."
                     "\n 2. Rule Compliance: Overview over the most broken rules."
