@@ -5,9 +5,9 @@ st.set_page_config(layout="wide")
 
 col1, col2 = st.columns(2)
 
-#with col1:
-    #elephant_logo = Image.open("ELEphanT_logo.png")
-    #st.image(elephant_logo, width=440)
+with col1:
+    elephant_logo = Image.open("ELEphanT_logo.png")
+    st.image(elephant_logo, width=440)
 with col2:
     st.markdown("# ELEphanT \n ### Easy Language Evaluation Tool")
     st.write("This page is a web presentation for the tool I developed during a university research project. "
