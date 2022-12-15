@@ -6,7 +6,7 @@ st.set_page_config(layout="wide")
 col1, col2 = st.columns(2)
 
 with col1:
-    elephant_logo = Image.open("../../ELEphanT_logo.png")
+    elephant_logo = Image.open("https://user-images.githubusercontent.com/92684499/207819065-a05163e1-6e43-4b3e-a519-19232c4a5175.png")
     st.image(elephant_logo, width=440)
 with col2:
     st.markdown("# ELEphanT \n ### Easy Language Evaluation Tool")
