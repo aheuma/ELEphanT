@@ -177,7 +177,7 @@ elif text and title:
             with tab_tabular_rule_scores:
                 st.dataframe(dataframe_relative_text_level_results)
                 csv = dataframe_relative_text_level_results.to_csv().encode("utf-8")
-                st.download_button(label="Download (csv)", data=csv, file_name="sentence_level_results.csv")
+                st.download_button(label="Download (csv)", data=csv, file_name="rule_compliance_scores.csv")
             with tab_graph_visualization:
                 col1, col2, col3 = st.columns([4, 1, 1])
                 with col1:
@@ -192,7 +192,7 @@ elif text and title:
                     plt.tight_layout()
                     plt.savefig("Rule_Compliance.png")
                     with open("Rule_Compliance.png", "rb") as file:
-                        st.download_button(label="Download (png)", data=file, file_name="Rule_Compliance.png")
+                        st.download_button(label="Download (png)", data=file, file_name="rule_compliance.png")
 
         with tab_elephant_output:
             # Further ELEphanT results (preprocessed text and excel sheets)
@@ -209,4 +209,4 @@ elif text and title:
             with expander_text_level_results:
                 st.dataframe(dataframe_text_level_results_transposed, width=120)
                 csv = dataframe_text_level_results_transposed.to_csv().encode("utf-8")
-                st.download_button(label="Download (csv)", data=csv, file_name="sentence_level_results.csv")
+                st.download_button(label="Download (csv)", data=csv, file_name="text_level_results.csv")
