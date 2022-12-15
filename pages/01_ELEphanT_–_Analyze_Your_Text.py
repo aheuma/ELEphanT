@@ -1,7 +1,7 @@
 import streamlit as st
 import sys
-sys.path.append("./PreProcessing/")
-sys.path.append("./Model/")
+sys.path.append("./preprocessing/")
+sys.path.append("./model/")
 from TextPreprocessor import TextPreprocessor
 from EasyLanguageEvaluator import EasyLanguageEvaluator
 import pandas as pd
