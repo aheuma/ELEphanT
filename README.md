@@ -13,32 +13,9 @@ Easy Language is a German language variety distinguished by simplicity, a clear 
 In a broader sense, Easy Language targets all people that can't deal properly with a standard text and would prefer a more simple version. Concretely, this includes groups such as functional illiterate people, people suffering from Dementia, hearing impaired people, foreign language learners etc. <br>
 There is no standard rulebook for Easy Language. Instead, there are multiple rulebooks, in most cases with either a strongly scientific oder practical-political background. For this project, the rulebook by [Netzwerk Leichte Sprache](https://www.leichte-sprache.org/wp-content/uploads/2017/11/Regeln_Leichte_Sprache.pdf) has been chosen, due to its popularity, among other things.
 
-## Preliminary Remarks
-- ELEphanT analyzes either a single text or multiple texts.
-- In the runtime, the original files will be modified / pre-processed; the modified files will be safed at a specified location.
-- There will be a two-fold output: <br>
-    a. For each analyzed text file, there will be an excel file containing the tool's results. <br>
-    b. There will be one additional summarizing excel file – this is interesting in cases where you would like to compare different texts in terms of Easy Language.
-
-## Installation   
-1. Clone repository.
-2. Open file: \ELEphanT\EasyLanguageEvaluationTool\ELEphanT.py.
-3. Specify the necessary paths in ELEphanT.py: <br>
-    a. Path to your original txt-files to be analyzed. (Please note: All txt-files in this folder will be analyzed.) <br>
-    b. Path to location for preprocessed txt-files. <br>
-    c. Path to location for sentence level results (a file with results (one line = one sentence) for each original txt-file will be generated). <br>
-    d. The filename for another excel file with summarizing text level results (optional).
-4. Install the following necessary packages via pip or anaconda: <br>
-    a. [spaCy](https://spacy.io/usage) <br>
-    b. [pandas](https://pandas.pydata.org/docs/getting_started/install.html) <br>
-    c. [xlsxwriter](https://pypi.org/project/XlsxWriter/) <br>
-    d. [openpyxl](https://pypi.org/project/openpyxl/)
-5. Download spaCy's German language model [de_core_news_sm](https://spacy.io/models/de#de_core_news_sm) with the terminal command "python3 -m spacy download de_core_news_sm" (depending on your downloaded python version you need to use "python" as command instead of "python3").
-6. In your terminal, locate to ...\ELEphanT\EasyLanguageEvaluationTool\ and run ELEphanT.py.
-
-**Remarks**
-- Required input text format: .txt
-- Python version: Python 3.10
+## Usage
+- Refer to the [streamlit web application](https://aheuma-elephant-start-ysqsc4.streamlit.app/). <br>
+- ELEphanT analyzes a single text. If you want to a) analyze multiple texts at once or b) run the tool via terminal, refer to the second repository on [GitLab](https://gitlab.rlp.net/aheumann/elephant).
 
 ## References
 The logo has been developed on the basis of free resources from vecteezy.com. <br>
