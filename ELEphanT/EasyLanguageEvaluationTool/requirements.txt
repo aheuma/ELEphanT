@@ -3,4 +3,4 @@ matplotlib~=3.5.2
 spacy~=3.4.1
 streamlit~=1.15.2
 Pillow~=9.0.1
-pathlib
+
