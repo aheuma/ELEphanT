@@ -147,7 +147,6 @@ elif text and title:
                 st.markdown(
                     f"### This corresponds to {'{:.1%}'.format(perfect_sentences_score)}.")
 
-            # TODO: Excel-Tabellen werden momentan nicht erkannt. Alles andere funktioniert! :)
             # Display Easy Language reference scores in an expander
             expander_reference_scores = st.expander("Reference Scores", expanded=True)
             with expander_reference_scores:
