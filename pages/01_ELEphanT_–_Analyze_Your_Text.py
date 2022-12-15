@@ -152,7 +152,7 @@ elif text and title:
             with expander_reference_scores:
                 tab_easy_language_reference_texts, tab_standard_german_reference_texts = st.tabs(["Easy Language Texts", "Standard German Texts"])
                 with tab_easy_language_reference_texts:
-                    dataframe_reference_easy_language = pd.read_excel("././Easy_Language_Reference_Texts.xlsx")
+                    dataframe_reference_easy_language = pd.read_excel("./xlsx-sheets/Easy_Language_Reference_Texts.xlsx")
                     if chosen_easy_language_score == "Unweighted":
                         dataframe_reference_easy_language = dataframe_reference_easy_language.drop(columns=["Weighted Score", "Amount of Perfect Sentences"])
                     elif chosen_easy_language_score == "Weighted":
@@ -161,7 +161,7 @@ elif text and title:
                         dataframe_reference_easy_language = dataframe_reference_easy_language.drop(columns=["Unweighted Score", "Weighted Score"])
                     st.dataframe(dataframe_reference_easy_language)
                 with tab_standard_german_reference_texts:
-                    dataframe_reference_standard_german = pd.read_excel("././Easy_Language_Reference_Texts.xlsx")
+                    dataframe_reference_standard_german = pd.read_excel("./xlsx-sheets/Standard_German_Reference_Texts.xlsx")
                     if chosen_easy_language_score == "Unweighted":
                         dataframe_reference_standard_german = dataframe_reference_standard_german.drop(columns=["Weighted Score", "Amount of Perfect Sentences"])
                     elif chosen_easy_language_score == "Weighted":
