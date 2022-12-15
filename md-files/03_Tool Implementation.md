@@ -1,5 +1,5 @@
 #### Easy Language Rules
-For ELEphanT, the rulebook by [Netzwerk Leichte Sprache]("https://www.leichte-sprache.org/wp-content/uploads/2017/11/Regeln_Leichte_Sprache.pdf") has been chosen, due to its popularity, among other things. This rulebook is intended to be used by Easy Language translators. At
+For ELEphanT, the rulebook by [Netzwerk Leichte Sprache](https://www.leichte-sprache.org/wp-content/uploads/2017/11/Regeln_Leichte_Sprache.pdf) has been chosen, due to its popularity, among other things. This rulebook is intended to be used by Easy Language translators. At
 the same time, it is not targeted to be automatically assessed by computer programs. Thus, many
 rules are not automatically assessable and excluded. To give an example, all rules from the level of
 „design and pictures“ were dismissed because rules such as „Use one single, large font“ or „Do not
