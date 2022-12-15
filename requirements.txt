@@ -6,4 +6,4 @@ Pillow~=9.0.1
 de_core_news_sm @ https://github.com/explosion/spacy-models/releases/download/de_core_news_sm-3.4.0/de_core_news_sm-3.4.0-py3-none-any.whl
 openpyxl
 xlsxwriter
-pandas-ods-reader
+odfpy
