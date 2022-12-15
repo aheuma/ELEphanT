@@ -17,5 +17,5 @@ with col2:
                 "\n - Read about the [details of my research project](https://aheuma-elephant-start-ysqsc4.streamlit.app/Information_on_Research_Project)")
     st.markdown("The original tool can be found in a [repository](https://gitlab.rlp.net/aheumann/elephant) on Gitlab, without UI but including the "
                 "possibility to analyze (and compare) multiple texts at once.")
-st.sidebar.markdown("Coypright information: The logo has been developed on the basis of free resources from vecteezy.com. "
+st.sidebar.markdown("Copyright information: The logo has been developed on the basis of free resources from vecteezy.com. "
                     "\n - Artist: Vecteezy \n - Vector graphic: [Elephant Vectors](https://www.vecteezy.com/vector-art/2485692-elephant-kids-coloring-page-great-for-beginner-coloring-book)")

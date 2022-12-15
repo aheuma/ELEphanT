@@ -30,6 +30,9 @@ with sidebar:
                     "\n 3. ELEphanT Output: Display preprocessed text and two-fold results: \n "
                     "- 3.1 Sentence level results, including the rule evaluations for every sentence. \n"
                     "\n - 3.2 Text level results, containing a summary of 3.1. \n - This output is always created und thus independent from the chosen evaluation mode.")
+    st.sidebar.markdown(
+        "Copyright information: The logo has been developed on the basis of free resources from vecteezy.com. "
+        "\n - Artist: Vecteezy \n - Vector graphic: [Elephant Vectors](https://www.vecteezy.com/vector-art/2485692-elephant-kids-coloring-page-great-for-beginner-coloring-book)")
 
 if "is_expanded" not in st.session_state:
     st.session_state["is_expanded"] = True
