@@ -148,7 +148,7 @@ elif text and title:
                     f"### This corresponds to {'{:.1%}'.format(perfect_sentences_score)}.")
 
             # Display Easy Language reference scores in an expander
-            expander_reference_scores = st.expander("Reference Scores", expanded=True)
+            '''expander_reference_scores = st.expander("Reference Scores", expanded=True)
             with expander_reference_scores:
                 tab_easy_language_reference_texts, tab_standard_german_reference_texts = st.tabs(["Easy Language Texts", "Standard German Texts"])
                 with tab_easy_language_reference_texts:
@@ -168,7 +168,7 @@ elif text and title:
                         dataframe_reference_standard_german = dataframe_reference_standard_german.drop(columns=["Unweighted Score", "Amount of Perfect Sentences"])
                     elif chosen_easy_language_score == "Amount of perfect sentences":
                         dataframe_reference_standard_german = dataframe_reference_standard_german.drop(columns=["Unweighted Score", "Weighted Score"])
-                    st.dataframe(dataframe_reference_standard_german)
+                    st.dataframe(dataframe_reference_standard_german)'''
                 st.write("*For more information on the reference texts' sources, cf. with [Information on Research Project](http://localhost:8501/Information_on_Research_Project).*")
 
         with tab_rule_compliance:
