@@ -10,5 +10,5 @@ elephant_logo = Image.open("./ELEphanT_logo.png")
 st.sidebar.image(elephant_logo, width=300)
 st.markdown("# What is Easy Language?")
 
-easy_language_markdown = read_markdown_file("./Markdown-Files/Easy Language.md")
+easy_language_markdown = read_markdown_file("./md-files/Easy Language.md")
 st.markdown(easy_language_markdown, unsafe_allow_html=True)
