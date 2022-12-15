@@ -1,7 +1,7 @@
 # ELEphanT – Easy Language Evaluation Tool
 
 
-<img src="/uploads/27475d964ac41dec774412ac32612367/ELEphanT_logo.png" align="left" width="230"/>
+<img src="https://user-images.githubusercontent.com/92684499/207818006-22dfd7df-e1e0-4a72-a0ea-158052134ad1.png" align="left" width="230"/>
 
 ## Description
 This student project is embedded in the DFG-funded project "CHYLSA – Advanced sentiment analysis for understanding affective-aesthetic responses to literary texts: A computational and experimental psychology approach to children’s literature" at Johannes Gutenberg-Universität (JGU) Mainz and Freie Universität Berlin and is part of the master program "Digitale Methodik in den Geistes- und Kulturwissenschaften" (Digital Humanities) at the JGU. <br> It aims at analyzing a given text in terms of its compliance to a specific ruleset of Easy Language. This includes research regarding Easy Language theory, rulebooks and automatic text simplification. The chosen rulebook is then implemented in Python to develop a tool that measures the degree of Easy Language and returns an Easy Language score.
