@@ -52,4 +52,4 @@ with exp5:
                 "- [Lebenshilfe Bremen, Geschichten in Leichter Sprache](https://lebenshilfe-bremen.de/wp-content/uploads/2019/08/Leseprobe_Bart-ab_barrierefrei.pdf) \n"
                 "- [Norddeutscher Rundfunk, Dornröschen in Leichter Sprache](https://www.ndr.de/fernsehen/barrierefreie_angebote/leichte_sprache/Dornroeschen,dornroeschenleichtesprache100.html) \n"
                 "- [Barrierefreie IT Hessen, Barriere-Freiheit in der IT erklärt](https://lbit.hessen.de/startseite-leichte-sprache/texte-in-leichter-sprache/barriere-freiheit-in-der-it-in-leichter-sprache) \n")
-    st.markdown("All websites were last accessed on december, 15th.")
+    st.markdown("All websites were last accessed on 15.12.2022.")
