@@ -12,5 +12,5 @@ st.sidebar.markdown("Copyright information: The logo has been developed on the b
                     "\n - Artist: Vecteezy \n - Vector graphic: [Elephant Vectors](https://www.vecteezy.com/vector-art/2485692-elephant-kids-coloring-page-great-for-beginner-coloring-book)")
 st.markdown("# What is Easy Language?")
 
-easy_language_markdown = read_markdown_file("./md-files/Easy Language.md")
+easy_language_markdown = read_markdown_file("./md-files/02_Easy Language.md")
 st.markdown(easy_language_markdown, unsafe_allow_html=True)

@@ -10,7 +10,12 @@ Language, the weighted score is created in multiplying the relative rule results
 score. In example: On average, the first two rules are never violated in the Easy Language reference
 corpus. This leads to the assumption that these rules are very important. On the contrary, rule nr. 16 is violated very often in all texts. Therefore, it is assumed that this rule is not of high importance for Easy Language. \
 These sample texts are mainly non-fictional Easy Language texts by public authorities. One
-text is a fairy tale translation. The 2nd group consists of only two texts: a 1:1 translation, meaning a standard German and Easy Language version of the same text: the general terms and conditions by the Bundeszentrale für politische Bildung (bpb) (for the original texts cf.: [standard]("https://www.bpb.de/shop/186122/allgemeine-geschaeftsbedingungen-mit-gesetzlichen-informationen/") and [Easy Language]("https://www.bpb.de/shop/201038/allgemeine-geschaefts-bedingungen-der-bpb-in-leicht-verstaendlicher-sprache/")).
+text is a fairy tale translation. The 2nd group consists of only two texts: a 1:1 translation, meaning a standard German and Easy Language version of the same text: the general terms and conditions by the Bundeszentrale für politische Bildung (bpb).
+
+All texts are referenced at the bottom of this page (expander „references“).
+
+
+
 
 #### Degree of Easy Language in Easy Language Texts
 For both the Easy Language Reference Corpus and the 1:1 parallel translation, the average scores of
@@ -35,7 +40,7 @@ interesting result:
 
 3. Even if the corpus texts adhere to the same rulebook as ELEphanT, they may have been implemented differently. As has been noted in section IV.I, concretization is necessary for many rules. If the translator of one of the EL corpus texts used a different definition for the rules – or a different priority –, this may also cause lower Easy Language scores with ELEphanT. To give an example: For rule nr. 13, I decided that a long sentence is defined as containing 9 or more words. But this threshold is not determined by the rulebook, and if the translator decides differently, this effects the results.
 
-4. Of course, ELEphanT doesn't evalaute all rules that are part of the rulebook by Netzwerk Leichte Sprache. At the same time, some rules can be evaluated approximatively only. In example, not all nominalisations are found with ELEphanT’s implementation. If the tool returns a score of 1, this simply means that a word ending on „ung“ hasn’t been found. But there are other nominalisated word forms that are not tracked by ELEphanT.
+4. Of course, ELEphanT doesn't evaluate all rules that are part of the rulebook by Netzwerk Leichte Sprache. At the same time, some rules can be evaluated approximatively only. In example, not all nominalisations are found with ELEphanT’s implementation. If the tool returns a score of 1, this simply means that a word ending on „ung“ hasn’t been found. But there are other nominalisated word forms that are not tracked by ELEphanT.
 
 Thus, the tool's Easy Language score should not be interpreted as an absolute score but
 rather as an approximation. Still, this tendency may be valuable for assessing a text’s complexity. At the same time, the single results for the rules may be helpful in determining where to improve a text to make it more accessible.
