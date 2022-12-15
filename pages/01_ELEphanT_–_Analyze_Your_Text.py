@@ -169,7 +169,7 @@ elif text and title:
                     elif chosen_easy_language_score == "Amount of perfect sentences":
                         dataframe_reference_standard_german = dataframe_reference_standard_german.drop(columns=["Unweighted Score", "Weighted Score"])
                     st.dataframe(dataframe_reference_standard_german)
-                st.write("*For more information on the reference texts' sources, cf. with [Information on Research Project](http://localhost:8501/Information_on_Research_Project).*")
+                st.write("*For more information on the reference texts' sources, cf. with [Information on Research Project](https://aheuma-elephant-start-ysqsc4.streamlit.app/Information_on_Research_Project).*")
 
         with tab_rule_compliance:
             # Rule compliance: table and graph
@@ -192,7 +192,7 @@ elif text and title:
                     plt.tight_layout()
                     plt.savefig("Rule_Compliance.png")
                     with open("Rule_Compliance.png", "rb") as file:
-                        st.download_button(label="Download", data=file, file_name="Rule_Compliance.png")
+                        st.download_button(label="Download (png)", data=file, file_name="Rule_Compliance.png")
 
         with tab_elephant_output:
             # Further ELEphanT results (preprocessed text and excel sheets)
