@@ -2,7 +2,7 @@ pandas~=1.4.2
 matplotlib~=3.5.2
 spacy~=3.4.1
 streamlit~=1.15.2
-Pillow~=9.0.1
+Pillow>=9.2.0
 de_core_news_sm @ https://github.com/explosion/spacy-models/releases/download/de_core_news_sm-3.4.0/de_core_news_sm-3.4.0-py3-none-any.whl
 openpyxl
 xlsxwriter
