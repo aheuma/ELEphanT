@@ -52,7 +52,7 @@ class SentenceLevelResults:
                      "R7: Abbreviations", "R8: Nominalisations", "R9: Passive Voice", "R10: Genitive Case",
                      "R11: Subjunctive Construct", "R12: Negative Words", "R13: Long Sentence",
                      "R14: Multiple Sentence Statements", "R15: Complex Sentence Structure",
-                     "R16: Sentence Beginnings"], index=[0])
+                     "R16: Sentence Beginnings"], index=[1])
         for i in range(len(text_characteristics[0])):
             new_data_row = [text_characteristics[0][i], text_characteristics[1][i], text_characteristics[2][i],
                                      text_characteristics[3][i], text_characteristics[4][i], text_characteristics[5][i],
