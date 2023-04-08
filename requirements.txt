@@ -7,3 +7,4 @@ de_core_news_sm @ https://github.com/explosion/spacy-models/releases/download/de
 openpyxl~=3.0.10
 xlsxwriter~=3.0.3
 odfpy~=1.4.1
+numpy
