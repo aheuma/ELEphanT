@@ -62,8 +62,7 @@ class SentenceLevelResults:
                         easy_language_rules[5][i], easy_language_rules[6][i], easy_language_rules[7][i],
                         easy_language_rules[8][i], easy_language_rules[9][i], easy_language_rules[10][i],
                         easy_language_rules[11][i], easy_language_rules[12][i], easy_language_rules[13][i],
-                        easy_language_rules[14][i], easy_language_rules[15][i], easy_language_rules[16][i],
-                            easy_language_rules[17][i]]
+                        easy_language_rules[14][i], easy_language_rules[15][i], easy_language_rules[16][i]]
             df_sentence_level_results.loc[i] = new_data_row
         temp_df = df_sentence_level_results.iloc[:, [7, 8, 9, 10, 11, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]]
         number_of_all_rules = len(temp_df.columns)
