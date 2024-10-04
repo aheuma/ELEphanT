@@ -66,7 +66,7 @@ class SentenceLevelResults:
             new_data_row_cleaned = [
                 str(item) if isinstance(item, (list, tuple, dict)) else item for item in new_data_row
             ]
-            df_sentence_level_results.loc[i] = new_data_row
+            df_sentence_level_results.loc[i] = new_data_row_cleaned
         temp_df = df_sentence_level_results.iloc[:, [7, 8, 9, 10, 11, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]]
         number_of_all_rules = len(temp_df.columns)
         satisfied_rules = temp_df.sum(axis=1)
