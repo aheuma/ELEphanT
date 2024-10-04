@@ -54,7 +54,7 @@ class SentenceLevelResults:
                      "R14: Multiple Sentence Statements", "R15: Complex Sentence Structure",
                      "R16: Sentence Beginnings"], index=[1])
         for i in range(len(text_characteristics[0])):
-            new_data_row = [text_characteristics[0][i], text_characteristics[1][i], text_characteristics[2][i],
+            new_data_row = [str(text_characteristics[0][i]), text_characteristics[1][i], text_characteristics[2][i],
                                      text_characteristics[3][i], text_characteristics[4][i], text_characteristics[5][i],
                                      text_characteristics[6][i], easy_language_rules[0][i], easy_language_rules[1][i],
                                      easy_language_rules[2][i], easy_language_rules[3][i], easy_language_rules[4][i],
@@ -63,13 +63,11 @@ class SentenceLevelResults:
                                      easy_language_rules[11][i], easy_language_rules[12][i], easy_language_rules[13][i],
                                      easy_language_rules[14][i], easy_language_rules[15][i], easy_language_rules[16][i],
                                      easy_language_rules[17][i]]
-            for idx, item in enumerate(new_data_row):
-                print(f"Item {idx}: Value = {item}, Type = {type(item)}")
-            '''new_data_row_cleaned = [
+            new_data_row_cleaned = [
                 str(item) if isinstance(item, (list, tuple, dict)) else item 
                 for item in new_data_row
-            ]'''
-            df_sentence_level_results.loc[i] = new_data_row
+            ]
+            df_sentence_level_results.loc[i] = new_data_row_cleaned
         temp_df = df_sentence_level_results.iloc[:, [7, 8, 9, 10, 11, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]]
         number_of_all_rules = len(temp_df.columns)
         satisfied_rules = temp_df.sum(axis=1)
