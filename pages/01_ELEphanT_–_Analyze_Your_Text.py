@@ -72,6 +72,8 @@ elif text and title:
         dataframe_text_level_results = pd.DataFrame()
         dataframe_sentence_level_results, dataframe_text_level_results = easy_language_evaluator.create_easy_language_results(
             preprocessed_text, title)
+        for item in dataframe_sentence_level_results:
+            st.write(type(item))
 
         # text level dataframe modifications
         dataframe_text_level_results = dataframe_text_level_results.dropna()
