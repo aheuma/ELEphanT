@@ -64,7 +64,8 @@ class SentenceLevelResults:
                                      easy_language_rules[14][i], easy_language_rules[15][i], easy_language_rules[16][i],
                                      easy_language_rules[17][i]]
             new_data_row_cleaned = [
-                str(item) if isinstance(item, (list, tuple, dict)) else item for item in new_data_row
+                str(item) if isinstance(item, (list, tuple, dict)) else item 
+                for item in new_data_row
             ]
             df_sentence_level_results.loc[i] = new_data_row_cleaned
         temp_df = df_sentence_level_results.iloc[:, [7, 8, 9, 10, 11, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]]
