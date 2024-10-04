@@ -54,7 +54,7 @@ class SentenceLevelResults:
                      "R14: Multiple Sentence Statements", "R15: Complex Sentence Structure",
                      "R16: Sentence Beginnings"], index=[1])
         for i in range(len(text_characteristics[0])):
-            new_data_row = [str(text_characteristics[0][i]), text_characteristics[1][i], text_characteristics[2][i],
+            new_data_row = [str(text_characteristics[0][i]), str(text_characteristics[1][i]), text_characteristics[2][i],
                                      text_characteristics[3][i], text_characteristics[4][i], text_characteristics[5][i],
                                      text_characteristics[6][i], easy_language_rules[0][i], easy_language_rules[1][i],
                                      easy_language_rules[2][i], easy_language_rules[3][i], easy_language_rules[4][i],
